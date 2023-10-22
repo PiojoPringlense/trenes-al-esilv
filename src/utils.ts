@@ -10,22 +10,21 @@ type EstacionesIDType =
 	| "stop_point:SNCF:87382218:RapidTransit"
 	| "stop_point:SNCF:87382861:RapidTransit";
 
+export const ESTACIONES = {
+	"stop_point:SNCF:87393843:RapidTransit": {
+		long: "Saint-Quentin en Yvelines",
+		short: "SQY",
+	},
+	"stop_point:SNCF:87382218:RapidTransit": {
+		long: "La Défense",
+		short: "La Défense",
+	},
+	"stop_point:SNCF:87382861:RapidTransit": {
+		long: "Versailles Rive Droite	",
+		short: "Versailles",
+	},
+};
 export function getStationName(id: string, isWide: boolean) {
-	const ESTACIONES = {
-		"stop_point:SNCF:87393843:RapidTransit": {
-			long: "Saint-Quentin en Yvelines",
-			short: "SQY",
-		},
-		"stop_point:SNCF:87382218:RapidTransit": {
-			long: "La Défense",
-			short: "La Défense",
-		},
-		"stop_point:SNCF:87382861:RapidTransit": {
-			long: "Versailles Rive Droite	",
-			short: "Versailles",
-		},
-	};
-
 	return ESTACIONES[id as EstacionesIDType][isWide ? "long" : "short"];
 }
 
