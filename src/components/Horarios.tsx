@@ -24,56 +24,60 @@ export default function Horarios({ horarios }: Props) {
 		return <div className="mt-5 bg-[#D60058] p-4 rounded">No suitable trains at this date</div>;
 
 	return (
-		<table className="border-collapse border border-gray-400 m-6">
+		<table className="border-collapse border border-gray-400 m-6 text-sm sm:text-base">
 			<thead>
 				<tr>
-					<th className="border border-gray-400 px-4">
+					<th className="border border-gray-400 px-2 sm:px-4">
 						{ISO2date(horarios[0].departure.hora).toLocaleDateString("FR-FR", {
 							day: "2-digit",
 							month: "short",
 							weekday: "short",
 						})}
 					</th>
-					{isWideScreen && <th className="border border-gray-400 px-4"></th>}
-					<th className="border border-gray-400 px-4" colSpan={2}>
+					{isWideScreen && <th className="border border-gray-400 px-2 sm:px-4"></th>}
+					<th className="border border-gray-400 px-2 sm:px-4" colSpan={2}>
 						From
 					</th>
-					<th className="border border-gray-400 px-4" colSpan={2}>
+					<th className="border border-gray-400 px-2 sm:px-4" colSpan={2}>
 						To
 					</th>
 				</tr>
 				<tr>
-					<th className="border border-gray-400 px-4">Train</th>
-					{isWideScreen && <th className="border border-gray-400 px-4">Destination</th>}
-					<th className="border border-gray-400 px-4">Station</th>
-					<th className="border border-gray-400 px-4">Time</th>
-					<th className="border border-gray-400 px-4">Station</th>
-					<th className="border border-gray-400 px-4">Time</th>
+					<th className="border border-gray-400 px-2 sm:px-4">Train</th>
+					{isWideScreen && (
+						<th className="border border-gray-400 px-2 sm:px-4">Destination</th>
+					)}
+					<th className="border border-gray-400 px-2 sm:px-4">Station</th>
+					<th className="border border-gray-400 px-2 sm:px-4">Time</th>
+					<th className="border border-gray-400 px-2 sm:px-4">Station</th>
+					<th className="border border-gray-400 px-2 sm:px-4">Time</th>
 				</tr>
 			</thead>
 			<tbody>
 				{horarios.map((tren, i) => (
 					<tr key={i}>
-						<td className="border border-gray-400 px-4 flex items-center gap-2">
+						<td className="border border-gray-400 px-2 sm:px-4 flex items-center gap-2">
 							<LineIcon line={tren.departure.line} color={tren.departure.lineColor} />
 							{tren.departure.headsign}
 						</td>
 						{isWideScreen && (
-							<td className="border border-gray-400 px-4">{tren.departure.direction}</td>
+							<td className="border border-gray-400 px-2 sm:px-4">
+								{tren.departure.direction}
+							</td>
 						)}
-						<td className="border border-gray-400 px-4">
+						<td className="border border-gray-400 px-2 sm:px-4">
 							{getStationName(tren.departure.estacionID, isWideScreen)}
 						</td>
-						<td className="border border-gray-400 px-4">
+						<td className="border border-gray-400 px-2 sm:px-4">
 							{ISO2date(tren.departure.hora).toLocaleTimeString("FR-FR", {
 								hour: "2-digit",
 								minute: "2-digit",
 							})}
 						</td>
-						<td className="border border-gray-400 px-4">
+						<td className="border border-gray-400 px-2 sm:px-4">
 							{getStationName(tren.arrival.estacionID, isWideScreen)}
 						</td>
-						<td className="border border-gray-400 px-4">
+						<td className="border border-gray-400 px-2 sm:px-4">
 							{ISO2date(tren.arrival.hora).toLocaleTimeString("FR-FR", {
 								hour: "2-digit",
 								minute: "2-digit",

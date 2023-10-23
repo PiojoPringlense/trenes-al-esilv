@@ -17,11 +17,11 @@ export const ESTACIONES = {
 	},
 	"stop_point:SNCF:87382218:RapidTransit": {
 		long: "La Défense",
-		short: "La Défense",
+		short: "DEF",
 	},
 	"stop_point:SNCF:87382861:RapidTransit": {
 		long: "Versailles Rive Droite	",
-		short: "Versailles",
+		short: "VRD",
 	},
 };
 export function getStationName(id: string, isWide: boolean) {

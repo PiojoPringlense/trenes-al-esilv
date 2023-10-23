@@ -51,7 +51,7 @@ export default function Trains({}: Props) {
 	return (
 		<>
 			<div className="flex gap-4 flex-col items-center">
-				<div className="flex gap-8 items-center">
+				<div className="flex gap-4 sm:gap-8 items-center">
 					<button
 						className="border py-2 px-4 rounded hover:bg-[#7584BC] transition-colors"
 						onClick={() =>
@@ -63,7 +63,7 @@ export default function Trains({}: Props) {
 						}>
 						&larr; Prev
 					</button>
-					<span>
+					<span className="text-center">
 						{date.toLocaleDateString("FR-FR", {
 							day: "2-digit",
 							month: "long",
