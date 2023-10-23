@@ -246,7 +246,7 @@ export function sortDepartureArrivalPair(
 	a: DeparturesArrivalsPairType,
 	b: DeparturesArrivalsPairType
 ) {
-	return ISO2date(a.departure.hora).getTime() - ISO2date(b.departure.hora).getTime();
+	return ISO2date(a.arrival.hora).getTime() - ISO2date(b.arrival.hora).getTime();
 }
 
 export function getDeparturesArrivalsPairs(departures: TablaType[], arrivals: TablaType[]) {
