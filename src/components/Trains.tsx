@@ -20,10 +20,7 @@ export default function Trains({}: Props) {
 			const options = { method: "GET" };
 
 			try {
-				const response = await fetch(
-					`http://localhost:3000/api/departures?date=${date2ISO(date)}`,
-					options
-				);
+				const response = await fetch(`/api/departures?date=${date2ISO(date)}`, options);
 				if (response.ok) {
 					const tabla = await response.json();
 					setHorarios(tabla);
