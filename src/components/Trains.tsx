@@ -63,7 +63,13 @@ export default function Trains({}: Props) {
 						}>
 						&larr; Prev
 					</button>
-					<span>{date.toDateString()}</span>
+					<span>
+						{date.toLocaleDateString("FR-FR", {
+							day: "2-digit",
+							month: "long",
+							weekday: "long",
+						})}
+					</span>
 					<button
 						className="border py-2 px-4 rounded hover:bg-[#7584BC] transition-colors"
 						onClick={() =>

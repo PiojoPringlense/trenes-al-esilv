@@ -27,7 +27,13 @@ export default function Horarios({ horarios }: Props) {
 		<table className="border-collapse border border-gray-400 m-6">
 			<thead>
 				<tr>
-					<th className="border border-gray-400 px-4"></th>
+					<th className="border border-gray-400 px-4">
+						{ISO2date(horarios[0].departure.hora).toLocaleDateString("FR-FR", {
+							day: "2-digit",
+							month: "short",
+							weekday: "short",
+						})}
+					</th>
 					{isWideScreen && <th className="border border-gray-400 px-4"></th>}
 					<th className="border border-gray-400 px-4" colSpan={2}>
 						From
