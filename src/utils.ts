@@ -209,7 +209,6 @@ export async function getDeparturesArrivals(
 				cache: "no-store",
 			}
 		);
-		console.log(response);
 
 		if (response.ok) {
 			const result: DeparturesArrivalsType = await response.json();

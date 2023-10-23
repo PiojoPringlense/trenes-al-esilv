@@ -15,9 +15,11 @@ export default function Trains({}: Props) {
 	const [status, setStatus] = useState<StatusType>("idle");
 
 	useEffect(() => {
+		const abortController = new AbortController();
+
 		async function getHorarios(date: Date) {
 			setStatus("idle");
-			const options = { method: "GET" };
+			const options = { method: "GET", signal: abortController.signal };
 
 			try {
 				const response = await fetch(`/api/departures?date=${date2ISO(date)}`, options);
@@ -30,12 +32,20 @@ export default function Trains({}: Props) {
 					setStatus("rejected");
 				}
 			} catch (error) {
-				console.log(error);
-				setHorarios(undefined);
-				setStatus("rejected");
+				if (abortController.signal.aborted) {
+					console.log("The user aborted the request");
+				} else {
+					console.error("The request failed");
+					console.log(error);
+					setHorarios(undefined);
+					setStatus("rejected");
+				}
 			}
 		}
 		getHorarios(date);
+		return () => {
+			abortController.abort();
+		};
 	}, [date]);
 
 	return (
@@ -43,7 +53,7 @@ export default function Trains({}: Props) {
 			<div className="flex gap-4 flex-col items-center">
 				<div className="flex gap-8 items-center">
 					<button
-						className="border py-2 px-4 rounded"
+						className="border py-2 px-4 rounded hover:bg-[#7584BC] transition-colors"
 						onClick={() =>
 							setDate((date) => {
 								const newDate = new Date(date.getTime());
@@ -55,7 +65,7 @@ export default function Trains({}: Props) {
 					</button>
 					<span>{date.toDateString()}</span>
 					<button
-						className="border py-2 px-4 rounded"
+						className="border py-2 px-4 rounded hover:bg-[#7584BC] transition-colors"
 						onClick={() =>
 							setDate((date) => {
 								const newDate = new Date(date.getTime());
@@ -69,6 +79,7 @@ export default function Trains({}: Props) {
 				<div className="flex gap-8 items-center">
 					<label htmlFor="ida" className="flex gap-1 items-center">
 						<input
+							className="accent-[#D60058]"
 							type="radio"
 							id="ida"
 							name="sentido"
@@ -80,6 +91,7 @@ export default function Trains({}: Props) {
 					</label>
 					<label htmlFor="vuelta" className="flex gap-1 items-center">
 						<input
+							className="accent-[#D60058]"
 							type="radio"
 							id="vuelta"
 							name="sentido"
